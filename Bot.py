@@ -53,4 +53,4 @@ async def serverdata(ctx):
     embed.set_thumbnail(url=ctx.message.server.icon_url)
     await bot.say(embed=embed)
 
-bot.run(os.getnev('TOKEN'))
+bot.run(os.getenv('TOKEN'))
