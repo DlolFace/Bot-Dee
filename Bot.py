@@ -6,8 +6,12 @@ from discord.ext.commands import Bot
 import asyncio
 from itertools import cycle
 import os
+import youtube_dl
 
 bot = commands.Bot(command_prefix='~')
+client = commands.Bot(command_prefix='~')
+
+players = {}
 
 @bot.event
 async def on_ready():
@@ -53,5 +57,23 @@ async def serverdata(ctx):
     embed.add_field(name="Members", value=len(ctx.message.server.members))
     embed.set_thumbnail(url=ctx.message.server.icon_url)
     await bot.say(embed=embed)
+@client.command(pass_context=True)
+async def join(ctx):
+    channel = ctx.message.author.voice.voice_channel
+    await client.join_voice_channel(channel)
 
+@client.command(pass_context=True)
+async def leave(ctx):
+    server = ctx.message.server
+    voice_client = client.voice_client_in(server)
+    await voice_client.disconnect()
+
+@client.command(pass_context=True)
+async def play(ctx, url):
+    server = ctx.message.server
+    voice_client = client.voice_client_in(server)
+    player = await voice_client.create_ytdl_player(url)
+    players[server.id] = player
+    player.start()
+    
 bot.run(os.getenv('TOKEN'))
