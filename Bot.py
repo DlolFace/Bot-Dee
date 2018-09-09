@@ -75,4 +75,4 @@ async def play(ctx, url):
     players[server.id] = player
     player.start()
     
-bot.run(os.getenv('TOKEN'))
+client.run(os.getenv('TOKEN'))
