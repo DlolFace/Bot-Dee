@@ -12,7 +12,7 @@ client = commands.Bot(command_prefix='~')
 
 players = {}
 
-@bot.event
+@client.event
 async def on_ready():
     print ("Ready!!")
     print ("I am " + bot.user.name + " a bot sent by Cybe...i mean DlolFace")
