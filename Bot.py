@@ -15,8 +15,8 @@ players = {}
 @client.event
 async def on_ready():
     print ("Ready!!")
-    print ("I am " + bot.user.name + " a bot sent by Cybe...i mean DlolFace")
-    print ("My ID Serial Number Is : " + bot.user.id)
+    print ("I am " + client.user.name + " a bot sent by Cybe...i mean DlolFace")
+    print ("My ID Serial Number Is : " + client.user.id)
 
 @client.event
 async def on_member_join(member):
@@ -30,7 +30,7 @@ async def test(ctx):
 
 @client.command(pass_context=True)
 async def whoareu(ctx):
-    await client.say("Hello im {}".format(bot.user.name))
+    await client.say("Hello im {}".format(client.user.name))
     await client.say("I am a bot sent by Cybe-...DlolFace")
     await client.say("my function is not complete yet since the owner is a moron")
     print ("Introduction Complete")
